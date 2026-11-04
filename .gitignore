@@ -1,0 +1,15 @@
+# local data / runtime
+data/
+venv/
+libs/
+__pycache__/
+*.pyc
+BALLAST.bin
+*.db
+*.db-wal
+*.db-shm
+secret.key
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

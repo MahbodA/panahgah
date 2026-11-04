@@ -1,0 +1,4 @@
+*.sh text eol=lf
+*.zip binary
+*.pdf binary
+*.woff2 binary
