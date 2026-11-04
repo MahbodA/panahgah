@@ -42,7 +42,6 @@ main() {
   # Make prompts work even when the script is piped (curl ... | bash).
   if [ ! -t 0 ] && { : </dev/tty; } 2>/dev/null; then exec </dev/tty; fi
 
-  case "$REPO" in MahbodA/*) [ -n "${PANAHGAH_SRC:-}" ] || die "Set PANAHGAH_REPO=user/repo (or edit REPO in this script).";; esac
 
   # ---------- Update or fresh install ----------
   UPDATE=0
