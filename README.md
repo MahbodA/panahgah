@@ -35,7 +35,7 @@ It is not tied to any country, though: anyone who wants their own messenger for 
 On the server, as root:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/panahgah/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/MahbodA/panahgah/main/install.sh)
 ```
 
 The script asks for the owner's username, password and display name, installs everything under `/opt/panahgah`, and starts a systemd service on **port 8001** (it does not touch nginx or port 80). Open `http://SERVER_IP:8001` and sign in.
@@ -44,7 +44,7 @@ Non-interactive:
 
 ```bash
 OWNER_USER=admin OWNER_PASS='a-strong-password' OWNER_NAME='My Name' PORT=8001 \
-  bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/panahgah/main/install.sh)
+  bash <(curl -fsSL https://raw.githubusercontent.com/MahbodA/panahgah/main/install.sh)
 ```
 
 Re-running the same command **updates** the code and keeps all data (users, messages, files). If PyPI is unreachable, the installer falls back to a domestic mirror; you can also pass `PIP_INDEX_URL=...`.

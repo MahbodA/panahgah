@@ -3,11 +3,11 @@
 #  Panahgah — one-click ONLINE installer (Ubuntu 22.04 / 24.04 / Debian, root)
 #
 #  Install:
-#    bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/panahgah/main/install.sh)
+#    bash <(curl -fsSL https://raw.githubusercontent.com/MahbodA/panahgah/main/install.sh)
 #
 #  Non-interactive:
 #    OWNER_USER=admin OWNER_PASS='StrongPass' OWNER_NAME='My Name' \
-#      bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/panahgah/main/install.sh)
+#      bash <(curl -fsSL https://raw.githubusercontent.com/MahbodA/panahgah/main/install.sh)
 #
 #  Optional environment variables:
 #    PORT=8001               application port (default 8001, nginx is not touched)
@@ -24,7 +24,7 @@
 set -euo pipefail
 
 main() {
-  REPO="${PANAHGAH_REPO:-YOUR_GITHUB_USER/panahgah}"
+  REPO="${PANAHGAH_REPO:-MahbodA/panahgah}"
   REF="${PANAHGAH_REF:-main}"
   APP="${PANAHGAH_DIR:-/opt/panahgah}"
   SERVICE_FILE="/etc/systemd/system/panahgah.service"
@@ -42,7 +42,7 @@ main() {
   # Make prompts work even when the script is piped (curl ... | bash).
   if [ ! -t 0 ] && { : </dev/tty; } 2>/dev/null; then exec </dev/tty; fi
 
-  case "$REPO" in YOUR_GITHUB_USER/*) [ -n "${PANAHGAH_SRC:-}" ] || die "Set PANAHGAH_REPO=user/repo (or edit REPO in this script).";; esac
+  case "$REPO" in MahbodA/*) [ -n "${PANAHGAH_SRC:-}" ] || die "Set PANAHGAH_REPO=user/repo (or edit REPO in this script).";; esac
 
   # ---------- Update or fresh install ----------
   UPDATE=0

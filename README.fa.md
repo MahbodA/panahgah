@@ -37,7 +37,7 @@
 روی سرور، با کاربر root:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/panahgah/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/MahbodA/panahgah/main/install.sh)
 ```
 
 اسکریپت نام کاربری، رمز و نام نمایشی مالک را می‌پرسد، همه‌چیز را در `/opt/panahgah` نصب می‌کند و سرویس systemd را روی **پورت ۸۰۰۱** بالا می‌آورد (به nginx و پورت ۸۰ دست نمی‌زند). بعد آدرس `http://IP_SERVER:8001` را باز کنید و وارد شوید.
@@ -46,7 +46,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/panahgah/ma
 
 ```bash
 OWNER_USER=admin OWNER_PASS='رمز-قوی' OWNER_NAME='نام من' PORT=8001 \
-  bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/panahgah/main/install.sh)
+  bash <(curl -fsSL https://raw.githubusercontent.com/MahbodA/panahgah/main/install.sh)
 ```
 
 اجرای دوباره‌ی همین دستور، برنامه را **به‌روزرسانی** می‌کند و اطلاعات (کاربران، پیام‌ها، فایل‌ها) را نگه می‌دارد. اگر PyPI در دسترس نباشد، نصب‌کننده خودکار سراغ میرور داخلی می‌رود؛ با `PIP_INDEX_URL=...` هم می‌توانید میرور دلخواه بدهید.
