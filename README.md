@@ -1,36 +1,62 @@
 <div align="center">
 
-# Panahgah · پناهگاه
+# 🏠 Panahgah · پناهگاه
 
-**A tiny self-hosted Persian messenger for you and your friends — built to keep working when the international internet doesn't.**
+### Your own messenger. Even when the internet isn't there.
 
-[فارسی](README.fa.md) · [Features](#features) · [Install](#install) · [Offline install](#offline-install-no-internet) · [Administration](#administration)
+A tiny, self-hosted Persian messenger for you and your people.<br>
+One server, one command, zero external dependencies.
+
+![License](https://img.shields.io/badge/license-MIT-green)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Flask](https://img.shields.io/badge/backend-Flask-lightgrey)
+![SQLite](https://img.shields.io/badge/database-SQLite-003B57)
+![Ubuntu](https://img.shields.io/badge/ubuntu-22.04%20%7C%2024.04-E95420)
+![Offline](https://img.shields.io/badge/offline%20install-supported-success)
+
+[فارسی](README.fa.md) · [Quick start](#-quick-start) · [Offline kit](#-offline-install-no-internet) · [Features](#-features) · [Administration](#-administration)
 
 </div>
 
 ---
 
-Panahgah runs on a single cheap VPS (or any Ubuntu box on a domestic network), with **no external dependencies at runtime**: no CDN, no online fonts, no third-party services. You create accounts, hand out usernames and passwords, and your group has its own private messenger, even during an internet shutdown, as long as the server is reachable on the local/national network.
+## 💡 Why Panahgah?
 
-It is not tied to any country, though: anyone who wants their own messenger for friends, family or a small team can use it.
+When the international internet goes down, the apps we rely on go with it. Panahgah is the answer to a simple question: **what if your group had its own messenger, on its own server, that keeps working as long as the local network does?**
 
-## Features
+You put it on a server, create accounts, and hand out usernames and passwords. That's it. No CDN, no online fonts, no third-party services, no sign-up page, no phone numbers. Everything the app needs ships with it.
 
-- **Chats**: private messages, groups and read-only/announcement channels, replies, message deletion, `@mentions` in groups, read receipts (✓ / ✓✓)
-- **Files and voice**: attachments, images (drag-and-drop or paste), voice messages
-- **Entertainment section**: music, podcasts, movies & series, PDF books with in-app playback, plus a shared list of links that open on the domestic network
-- **Roles**: owner, admin, level-2 uploader, regular user
-- **Storage management**: disk guards, per-user quotas, automatic emergency clean-up, owner dashboard
-- **PWA**: install to the phone's home screen
-- **Persian / RTL UI**, mobile-first
-- **Tiny stack**: Python + Flask, SQLite, one HTML file for the frontend, no build step
+It was built for national-network outages, but it's just as good for anyone who wants a private messenger for friends, family or a small team.
 
-## Requirements
+## 📸 See it in action
 
-- A server running **Ubuntu 22.04 / 24.04** (other Debian-based systems should work but are untested), root access, Python 3.10+
-- 1 vCPU / 1 GB RAM is enough for a small group
+<table>
+  <tr>
+    <td align="center"><b>Sign in</b><br><img src="screenshots/login.png" alt="Login"></td>
+    <td align="center"><b>Group chat</b><br><img src="screenshots/chat.png" alt="Group chat"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Entertainment</b><br><img src="screenshots/Hobbies.png" alt="Entertainment"></td>
+    <td align="center"><b>Management panel</b><br><img src="screenshots/Managment.png" alt="Management panel"></td>
+  </tr>
+</table>
 
-## Install
+## ✨ Features
+
+| | |
+|---|---|
+| 💬 **Chats** | Private messages, groups, and channels where only approved people can post. Replies, message deletion, `@mentions`, read receipts (✓ / ✓✓) |
+| 📎 **Files & voice** | Attachments, images (pick, drag-and-drop or paste), voice messages |
+| 🎬 **Entertainment** | Music, podcasts, movies & series, PDF books, all playable in the app, plus a shared list of links that open on the domestic network |
+| 🛡️ **Roles** | Owner, admin, level-2 uploader, regular user |
+| 💾 **Storage management** | Disk guards, per-user quotas, automatic emergency clean-up, owner dashboard |
+| 📱 **PWA** | Add it to your phone's home screen and it feels like a native app |
+| 🌐 **Persian, RTL, mobile-first** | Designed for phones from the start |
+| 🪶 **Tiny stack** | Python + Flask, SQLite, a single HTML file for the frontend. No build step, no Docker needed |
+
+## 🚀 Quick start
+
+**You need:** a server with **Ubuntu 22.04 / 24.04** (other Debian-based systems should work but are untested), root access and Python 3.10+. 1 vCPU and 1 GB RAM is plenty for a small group.
 
 On the server, as root:
 
@@ -38,87 +64,101 @@ On the server, as root:
 bash <(curl -fsSL https://raw.githubusercontent.com/MahbodA/panahgah/main/install.sh)
 ```
 
-The script asks for the owner's username, password and display name, installs everything under `/opt/panahgah`, and starts a systemd service on **port 8001** (it does not touch nginx or port 80). Open `http://SERVER_IP:8001` and sign in.
+The installer asks for the owner's username, password and display name, installs everything under `/opt/panahgah`, and starts a systemd service on **port 8001** (nginx and port 80 are left alone). Then open:
 
-Non-interactive:
+```
+http://SERVER_IP:8001
+```
+
+<details>
+<summary><b>Non-interactive install, updates and options</b></summary>
 
 ```bash
 OWNER_USER=admin OWNER_PASS='a-strong-password' OWNER_NAME='My Name' PORT=8001 \
   bash <(curl -fsSL https://raw.githubusercontent.com/MahbodA/panahgah/main/install.sh)
 ```
 
-Re-running the same command **updates** the code and keeps all data (users, messages, files). If PyPI is unreachable, the installer falls back to a domestic mirror; you can also pass `PIP_INDEX_URL=...`.
+- **Updating:** run the same command again. The code is updated and all data (users, messages, files) is kept.
+- **PyPI blocked?** The installer falls back to a domestic mirror automatically. You can also pass `PIP_INDEX_URL=...`.
+- **Different port:** `PORT=8002`.
 
-> Do this **before** an outage. The online installer needs GitHub, PyPI and apt. If the international internet is already down, use the offline kit below.
+</details>
 
-## Offline install (no internet)
+> ⚠️ **Do this before an outage.** The online installer needs GitHub, PyPI and apt. If the international internet is already down, use the offline kit below.
 
-Everything the server needs (all Python libraries included) is in [`offline/`](offline). Nothing is downloaded: no apt, no pip, no GitHub.
+## 📦 Offline install (no internet)
 
-1. Download `offline/panahgah-offline.zip` and `offline/install.sh` (keep a copy somewhere safe **now**).
+Everything the server needs, including every Python library, is in [`offline/`](offline). **Nothing is downloaded**: no apt, no pip, no GitHub. Keep a copy of these two files somewhere safe *now*, so they're in your hands when you need them.
+
+1. Grab `offline/panahgah-offline.zip` and `offline/install.sh`.
 2. Copy both to the server's `/opt`:
    ```bash
    scp panahgah-offline.zip install.sh root@SERVER_IP:/opt/
    ```
-3. Run:
+3. Run the installer:
    ```bash
    ssh root@SERVER_IP
    cd /opt && bash install.sh
    ```
-4. Answer the prompts (owner username / password / display name). Done: `http://SERVER_IP:8001`.
+4. Answer the prompts (owner username, password, display name). Done: `http://SERVER_IP:8001`.
 
-Same optional variables work: `PORT=8002`, `OWNER_USER=... OWNER_PASS=...`, `PANAHGAH_DIR=...`. Re-running with a newer zip updates the code and keeps the data.
+The same options work here: `PORT=8002`, `OWNER_USER=... OWNER_PASS=...`, `PANAHGAH_DIR=...`. Running it again with a newer zip updates the code and keeps your data.
 
-## Administration
+## 🛠️ Administration
 
-After installation the `panahgah-manage` command is available:
+After installation you get the `panahgah-manage` command:
 
 ```bash
-panahgah-manage list                            # list users
+panahgah-manage list                                    # list users
 panahgah-manage user     NAME PASSWORD "Display name"   # regular user
-panahgah-manage uploader NAME PASSWORD "Display name"   # level-2 (can upload entertainment content)
+panahgah-manage uploader NAME PASSWORD "Display name"   # level 2: can upload entertainment content
 panahgah-manage admin    NAME PASSWORD "Display name"   # admin
-panahgah-manage passwd   NAME NEWPASSWORD       # reset a password
-panahgah-manage faststart                       # make old mp4/m4a files start playing faster
+panahgah-manage passwd   NAME NEWPASSWORD               # reset a password
+panahgah-manage faststart                               # make old mp4/m4a files start playing faster
 ```
 
-Most day-to-day work (creating users, groups, channels, managing storage) is done from the **Manage** panel in the web UI, signed in as the owner.
+Day-to-day work (creating users, groups and channels, managing storage) happens in the **Manage** panel of the web app, signed in as the owner.
 
 | Role | Can do |
 |---|---|
 | **Owner** | Everything: users, admins, groups, channels, storage, any content |
-| **Admin** | Delete messages, add/edit regular and level-2 users, manage entertainment content |
-| **Level 2** | Regular features + upload entertainment content and add links |
+| **Admin** | Delete messages, add and edit regular and level-2 users, manage entertainment content |
+| **Level 2** | Everything a regular user can, plus upload entertainment content and add links |
 | **User** | Messages, files, voice, replies, delete own messages |
 
-Service control:
-
 ```bash
-systemctl status panahgah
-journalctl -u panahgah -f
+systemctl status panahgah      # is it running?
+journalctl -u panahgah -f      # live logs
 systemctl restart panahgah
 ```
 
-### Configuration
+<details>
+<summary><b>⚙️ Configuration</b></summary>
 
-Set in `/etc/systemd/system/panahgah.service` (then `systemctl daemon-reload && systemctl restart panahgah`):
+Set these in `/etc/systemd/system/panahgah.service`, then run `systemctl daemon-reload && systemctl restart panahgah`.
 
 | Variable | Default | Meaning |
 |---|---|---|
 | `OWNER_USERNAME` | set by installer | Username that has owner rights |
-| `MAX_UPLOAD_MB` | `3072` | Hard limit for one request |
-| `MIN_FREE_GB` | `4` | Uploads are refused below this much free disk |
+| `MAX_UPLOAD_MB` | `3072` | Hard limit for a single request |
+| `MIN_FREE_GB` | `4` | Uploads are refused when free disk drops below this |
 | `HTTPS` | `0` | Set to `1` only when the site is really served over HTTPS (secure cookies) |
 | `PANAHGAH_DATA` | `<app>/data` | Where the database and uploads live |
 | `ACCEL_REDIRECT` | `0` | `1` lets nginx serve uploaded files (see `docs/DEPLOY.fa.txt`, section 19) |
 
-### HTTPS and voice recording
+</details>
 
-Browsers only allow direct microphone recording on HTTPS. Over plain HTTP the voice button opens the phone's own recorder instead, which still works. For direct recording put nginx/Caddy with a certificate in front (a self-signed certificate is fine for IP-only setups) and set `HTTPS=1`. Details: [`docs/DEPLOY.fa.txt`](docs/DEPLOY.fa.txt), section 13.
+<details>
+<summary><b>🎙️ HTTPS and voice recording</b></summary>
 
-### Backup and restore
+Browsers only allow direct microphone recording on HTTPS. Over plain HTTP the voice button opens the phone's own recorder instead, which still works fine. For direct in-app recording, put nginx or Caddy with a certificate in front (a self-signed certificate is enough for IP-only setups) and set `HTTPS=1`. Details: [`docs/DEPLOY.fa.txt`](docs/DEPLOY.fa.txt), section 13.
 
-All data lives in `/opt/panahgah/data` (database, uploads, session key).
+</details>
+
+<details>
+<summary><b>🗄️ Backup and restore</b></summary>
+
+Everything lives in `/opt/panahgah/data` (database, uploads, session key).
 
 ```bash
 systemctl stop panahgah
@@ -126,53 +166,47 @@ tar czf /root/panahgah-backup-$(date +%F).tar.gz -C /opt/panahgah data
 systemctl start panahgah
 ```
 
-Restore: stop the service, extract the archive into `/opt/panahgah`, `chown -R panahgah:panahgah /opt/panahgah/data`, start the service.
+To restore: stop the service, extract the archive into `/opt/panahgah`, run `chown -R panahgah:panahgah /opt/panahgah/data`, and start the service.
 
-## Repository layout
+</details>
+
+## 🗂️ Repository layout
 
 ```
-install.sh                 online one-click installer
-app/                       the application (single source of truth)
+install.sh                      online one-click installer
+app/                            the application (single source of truth)
   app.py  manage.py  requirements.txt  static/
 offline/
-  install.sh               offline installer
-  panahgah-offline.zip     app + all Python libraries
+  install.sh                    offline installer
+  panahgah-offline.zip          app + all Python libraries
 tools/
-  build-offline.sh         rebuild the offline zip from app/
+  build-offline.sh              rebuild the offline zip from app/
 docs/
-  DEPLOY.fa.txt            detailed deployment notes (Persian)
+  DEPLOY.fa.txt                 detailed deployment notes (Persian)
   Maintenance_Handbook.fa.pdf   full maintenance handbook (Persian)
 ```
 
-After changing anything in `app/`, rebuild the offline kit on a machine with internet (ideally Ubuntu 24.04):
+Changed something in `app/`? Rebuild the offline kit on a machine with internet (ideally Ubuntu 24.04):
 
 ```bash
 bash tools/build-offline.sh
 ```
 
-## Security notes
+## 🔒 Security notes
 
-- Messages are **not end-to-end encrypted**. The server administrator can read the database. Only add people you trust.
-- Out of the box the site is plain HTTP on a port. Use HTTPS if you can, and use strong passwords.
-- There is no public sign-up; only the owner/admins create accounts.
-- Keep `data/secret.key` private and back up `data/`.
+- Messages are **not end-to-end encrypted**. Whoever administers the server can read the database, so only invite people you trust.
+- Out of the box the site is plain HTTP on a port. Use HTTPS if you can, and always set strong passwords.
+- There's no public sign-up. Only the owner and admins create accounts.
+- Keep `data/secret.key` private, and back up `data/`.
 
-## License
+## 📄 License
 
 [MIT](LICENSE). The bundled brand font (Grand Hotel) is under the SIL Open Font License.
 
 ---
 
-## Screenshots
+<div align="center">
 
-### Login
-![Login](screenshots/login.png)
+Built with ❤️ by **Mahbod.A** · If Panahgah helps you, a ⭐ on the repo means a lot.
 
-### Management
-![Management](screenshots/Managment.png)
-
-### Hobbies
-![Hobbies](screenshots/Hobbies.png)
-
-### Group Chat
-![Group Chat](screenshots/chat.png)
+</div>
