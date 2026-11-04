@@ -160,3 +160,19 @@ bash tools/build-offline.sh
 ## License
 
 [MIT](LICENSE). The bundled brand font (Grand Hotel) is under the SIL Open Font License.
+
+---
+
+## Screenshots
+
+### Login
+![Login](screenshots/login.png)
+
+### Management
+![Management](screenshots/Managment.png)
+
+### Hobbies
+![Hobbies](screenshots/Hobbies.png)
+
+### Group Chat
+![Group Chat](screenshots/chat.png)

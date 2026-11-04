@@ -164,3 +164,19 @@ bash tools/build-offline.sh
 [MIT](LICENSE). فونت لوگو (Grand Hotel) تحت مجوز SIL Open Font License است.
 
 </div>
+
+---
+
+## تصاویر محیط برنامه
+
+### صفحه ورود
+![صفحه ورود](screenshots/login.png)
+
+### بخش مدیریت
+![مدیریت](screenshots/Managment.png)
+
+### سرگرمی‌ها
+![سرگرمی‌ها](screenshots/Hobbies.png)
+
+### گفت‌وگوی گروهی
+![گفت‌وگوی گروهی](screenshots/chat.png)
